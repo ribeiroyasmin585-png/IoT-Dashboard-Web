@@ -10,25 +10,25 @@ const paginaDashboard = document.getElementById("dashboard");
 
 btnSobre.addEventListener("click", function () {
 
-```
+
 paginaSobre.classList.add("ativa");
 paginaDashboard.classList.remove("ativa");
 
 btnSobre.classList.add("ativo");
 btnDashboard.classList.remove("ativo");
-```
+
 
 });
 
 btnDashboard.addEventListener("click", function () {
 
-```
+
 paginaDashboard.classList.add("ativa");
 paginaSobre.classList.remove("ativa");
 
 btnDashboard.classList.add("ativo");
 btnSobre.classList.remove("ativo");
-```
+
 
 });
 
@@ -41,13 +41,13 @@ LOCAL STORAGE
 
 if (!localStorage.getItem("senhaGrupo")) {
 
-```
+
 const senha = prompt("Digite a senha fornecida pelo professor:");
 
 if (senha) {
     localStorage.setItem("senhaGrupo", senha);
 }
-```
+
 
 }
 
@@ -120,7 +120,7 @@ QUANDO CONECTAR
 
 client.onConnectionLost = function (responseObject) {
 
-```
+
 statusElemento.textContent =
     "🔴 MQTT: Desconectado";
 
@@ -128,7 +128,7 @@ statusElemento.classList.remove("conectado");
 statusElemento.classList.add("desconectado");
 
 console.log("Conexão perdida.");
-```
+
 
 };
 
@@ -138,7 +138,6 @@ RECEBER MENSAGENS
 
 client.onMessageArrived = function (message) {
 
-```
 console.log(
     "Mensagem recebida:",
     message.destinationName,
@@ -222,7 +221,7 @@ if (
     }
 
 }
-```
+
 
 };
 
@@ -232,7 +231,7 @@ CONECTAR AO MOSQUITTO
 
 function conectarMQTT() {
 
-```
+
 statusElemento.textContent =
     "🟡 MQTT: Conectando...";
 
@@ -300,7 +299,7 @@ client.connect({
     }
 
 });
-```
+
 
 }
 
