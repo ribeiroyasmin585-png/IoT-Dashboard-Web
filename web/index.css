@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: Arial, sans-serif;
+background: #f4f6f8;
+color: #1f2937;
+}
+
+/* CABEÇALHO */
+
+.cabecalho {
+background: #111827;
+color: white;
+padding: 25px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.titulo h1 {
+font-size: 28px;
+margin-bottom: 5px;
+}
+
+.grupo {
+display: flex;
+flex-direction: column;
+text-align: right;
+}
+
+/* MENU */
+
+.menu {
+background: white;
+display: flex;
+justify-content: center;
+gap: 10px;
+padding: 15px;
+}
+
+.menu button {
+border: none;
+padding: 12px 25px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 16px;
+}
+
+.menu button.ativo {
+background: #111827;
+color: white;
+}
+
+/* PÁGINAS */
+
+.pagina {
+display: none;
+padding: 40px 7%;
+}
+
+.pagina.ativa {
+display: block;
+}
+
+/* SOBRE */
+
+.hero {
+background: white;
+padding: 35px;
+border-radius: 15px;
+margin-bottom: 30px;
+}
+
+.hero h2 {
+margin-bottom: 15px;
+}
+
+.hero p {
+line-height: 1.6;
+margin-bottom: 10px;
+}
+
+.conteudo {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+.card-info {
+background: white;
+padding: 25px;
+border-radius: 15px;
+}
+
+.card-info h2 {
+margin-bottom: 15px;
+}
+
+.card-info p,
+.card-info li {
+line-height: 1.6;
+}
+
+/* IMAGENS */
+
+.galeria {
+margin-top: 40px;
+}
+
+.imagens {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+.imagens figure {
+background: white;
+border-radius: 15px;
+overflow: hidden;
+}
+
+.imagens img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+}
+
+.imagens figcaption {
+padding: 15px;
+font-weight: bold;
+}
+
+/* DASHBOARD */
+
+.dashboard-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 30px;
+}
+
+.status {
+padding: 12px 18px;
+border-radius: 30px;
+font-weight: bold;
+}
+
+.status.desconectado {
+background: #fee2e2;
+color: #991b1b;
+}
+
+.status.conectado {
+background: #dcfce7;
+color: #166534;
+}
+
+/* CARDS */
+
+.dashboard {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 25px;
+}
+
+.sensor-card {
+background: white;
+padding: 35px;
+border-radius: 18px;
+text-align: center;
+}
+
+.sensor-card .icone {
+font-size: 45px;
+}
+
+.sensor-card strong {
+font-size: 42px;
+display: block;
+margin: 15px 0;
+}
+
+/* INFORMAÇÃO */
+
+.informacao {
+background: white;
+padding: 30px;
+margin-top: 30px;
+border-radius: 15px;
+}
+
+/* RODAPÉ */
+
+footer {
+margin-top: 50px;
+background: #111827;
+color: white;
+text-align: center;
+}
+
+footer > p {
+padding: 25px;
+}
+
+.banner {
+background: #1f2937;
+padding: 20px;
+font-size: 18px;
+font-weight: bold;
+}
+
+/* CELULAR */
+
+@media (max-width: 800px) {
+
+```
+.cabecalho {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+.grupo {
+    text-align: center;
+}
+
+.conteudo,
+.imagens,
+.dashboard {
+    grid-template-columns: 1fr;
+}
+
+.dashboard-header {
+    flex-direction: column;
+    gap: 15px;
+}
+```
+
+}
+
+

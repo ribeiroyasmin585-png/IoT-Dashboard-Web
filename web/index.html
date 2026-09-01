@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Estação de Monitoramento IoT</title>
+
+<link rel="stylesheet" href="index.css">
+
+<!-- Biblioteca Paho MQTT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+```
+
+</head>
+
+<body>
+
+```
+<header class="cabecalho">
+    <div class="titulo">
+        <h1>Estação de Monitoramento IoT</h1>
+        <p>Projeto IoT - SESI SENAI Vinhedo</p>
+    </div>
+
+    <div class="grupo">
+        <strong>Grupo XX</strong>
+        <span>Turma: XXXXX</span>
+    </div>
+</header>
+
+<nav class="menu">
+    <button id="btnSobre" class="ativo">Sobre o Projeto</button>
+    <button id="btnDashboard">Dashboard Ao Vivo</button>
+</nav>
+
+<main>
+
+    <!-- ================= SOBRE O PROJETO ================= -->
+
+    <section id="sobre" class="pagina ativa">
+
+        <article class="hero">
+            <h2>Sobre o Projeto</h2>
+
+            <p>
+                Este projeto consiste em uma estação de monitoramento IoT
+                capaz de coletar informações ambientais utilizando um ESP32,
+                sensores e comunicação MQTT.
+            </p>
+
+            <p>
+                Os dados coletados são enviados para um servidor Mosquitto
+                e posteriormente apresentados em um dashboard web em tempo real.
+            </p>
+        </article>
+
+        <section class="conteudo">
+
+            <article class="card-info">
+                <h2>🎯 Objetivo</h2>
+
+                <p>
+                    Monitorar temperatura, umidade e qualidade do ar,
+                    apresentando os dados em uma interface web de forma
+                    simples e atualizada em tempo real.
+                </p>
+            </article>
+
+            <article class="card-info">
+                <h2>🔧 Hardware</h2>
+
+                <ul>
+                    <li>ESP32 Dev Module</li>
+                    <li>Sensor DHT11</li>
+                    <li>Sensor MQ-135</li>
+                    <li>LEDs de alerta</li>
+                </ul>
+            </article>
+
+            <article class="card-info">
+                <h2>🌐 Arquitetura</h2>
+
+                <p>
+                    ESP32 → Wi-Fi → MQTT → Mosquitto →
+                    WebSocket → Dashboard Web
+                </p>
+            </article>
+
+        </section>
+
+        <section class="galeria">
+
+            <h2>Imagens do Projeto</h2>
+
+            <div class="imagens">
+
+                <figure>
+                    <img src="imagens/esp32.jpg" alt="ESP32 do projeto">
+                    <figcaption>ESP32</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/sensores.jpg" alt="Sensores do projeto">
+                    <figcaption>Sensores</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/arquitetura.jpg" alt="Arquitetura IoT">
+                    <figcaption>Arquitetura do sistema</figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard" class="pagina">
+
+        <section class="dashboard-header">
+            <h2>Dashboard Ao Vivo</h2>
+
+            <div id="status" class="status desconectado">
+                🔴 MQTT: Desconectado
+            </div>
+        </section>
+
+
+        <section class="dashboard">
+
+            <article class="sensor-card temperatura">
+                <div class="icone">🌡️</div>
+
+                <h3>Temperatura</h3>
+
+                <strong id="temperatura">-- °C</strong>
+
+                <p id="alertaTemperatura">Normal</p>
+            </article>
+
+
+            <article class="sensor-card umidade">
+                <div class="icone">💧</div>
+
+                <h3>Umidade</h3>
+
+                <strong id="umidade">-- %</strong>
+
+                <p id="alertaUmidade">Normal</p>
+            </article>
+
+
+            <article class="sensor-card ar">
+                <div class="icone">🌫️</div>
+
+                <h3>Qualidade do Ar</h3>
+
+                <strong id="qualidadeAr">--</strong>
+
+                <p id="alertaAr">Normal</p>
+            </article>
+
+        </section>
+
+
+        <section class="informacao">
+
+            <h2>Monitoramento em tempo real</h2>
+
+            <p>
+                Os valores apresentados são recebidos através do protocolo
+                MQTT utilizando WebSockets.
+            </p>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<!-- ================= RODAPÉ ================= -->
+
+<footer>
+
+    <p>
+        Integrantes:
+        Nome 1 • Nome 2 • Nome 3 • Nome 4
+    </p>
+
+    <div class="banner">
+        Projeto IOT SESI SENAI Vinhedo Grupo XX
+    </div>
+
+</footer>
+
+
+<!-- JavaScript -->
+<script src="index.js"></script>
+```
+
+</body>
+</html>
