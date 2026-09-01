@@ -217,7 +217,7 @@ font-weight: bold;
 
 @media (max-width: 800px) {
 
-```
+
 .cabecalho {
     flex-direction: column;
     text-align: center;
@@ -238,8 +238,6 @@ font-weight: bold;
     flex-direction: column;
     gap: 15px;
 }
-```
 
 }
-
 
