@@ -10,221 +10,210 @@ const paginaDashboard = document.getElementById("dashboard");
 
 btnSobre.addEventListener("click", function () {
 
-```
-paginaSobre.classList.add("ativa");
-paginaDashboard.classList.remove("ativa");
+    paginaSobre.classList.add("ativa");
+    paginaDashboard.classList.remove("ativa");
 
-btnSobre.classList.add("ativo");
-btnDashboard.classList.remove("ativo");
-```
+    btnSobre.classList.add("ativo");
+    btnDashboard.classList.remove("ativo");
 
 });
 
 btnDashboard.addEventListener("click", function () {
 
-```
-paginaDashboard.classList.add("ativa");
-paginaSobre.classList.remove("ativa");
+    paginaDashboard.classList.add("ativa");
+    paginaSobre.classList.remove("ativa");
 
-btnDashboard.classList.add("ativo");
-btnSobre.classList.remove("ativo");
-```
+    btnDashboard.classList.add("ativo");
+    btnSobre.classList.remove("ativo");
 
 });
+
 
 /* =====================================================
 LOCAL STORAGE
 ===================================================== */
 
-// Exemplo de armazenamento da senha do grupo.
-// Depois você pode alterar o nome da chave e o valor.
+// Senha fornecida pelo professor para o Grupo 4
+const senhaGrupo = "grupo";
 
-if (!localStorage.getItem("senhaGrupo")) {
+// Salva a senha no LocalStorage
+localStorage.setItem("senhaGrupo", senhaGrupo);
 
-```
-const senha = prompt("Digite a senha fornecida pelo professor:");
-
-if (senha) {
-    localStorage.setItem("senhaGrupo", senha);
-}
-```
-
-}
 
 /* =====================================================
 CONFIGURAÇÃO MQTT
 ===================================================== */
 
-// IMPORTANTE:
-// Troque pelo IP DO COMPUTADOR onde o Mosquitto está instalado.
-
+// IP do computador onde o Mosquitto está instalado
 const MQTT_HOST = "192.168.0.100";
 
 // Porta WebSocket do Mosquitto
 const MQTT_PORT = 9001;
 
-// Client ID aleatório
-const CLIENT_ID = "Dashboard_" + Math.random().toString(16).substring(2, 10);
+// Client ID aleatório para evitar conflitos
+const CLIENT_ID =
+    "Dashboard_" + Math.random().toString(16).substring(2, 10);
+
 
 /* =====================================================
-TÓPICOS
+TÓPICOS MQTT
 ===================================================== */
 
 const TOPICO_TEMPERATURA =
-"aulas/professortupi/temperatura";
+    "aulas/professortupi/temperatura";
 
 const TOPICO_UMIDADE =
-"aulas/professortupi/umidade";
+    "aulas/professortupi/umidade";
 
 const TOPICO_AR =
-"aulas/professortupi/qualidade_ar";
+    "aulas/professortupi/qualidade_ar";
+
 
 /* =====================================================
 ELEMENTOS DO HTML
 ===================================================== */
 
 const temperaturaElemento =
-document.getElementById("temperatura");
+    document.getElementById("temperatura");
 
 const umidadeElemento =
-document.getElementById("umidade");
+    document.getElementById("umidade");
 
 const qualidadeArElemento =
-document.getElementById("qualidadeAr");
+    document.getElementById("qualidadeAr");
 
 const alertaTemperatura =
-document.getElementById("alertaTemperatura");
+    document.getElementById("alertaTemperatura");
 
 const alertaUmidade =
-document.getElementById("alertaUmidade");
+    document.getElementById("alertaUmidade");
 
 const alertaAr =
-document.getElementById("alertaAr");
+    document.getElementById("alertaAr");
 
 const statusElemento =
-document.getElementById("status");
+    document.getElementById("status");
+
 
 /* =====================================================
 CRIAÇÃO DO CLIENTE MQTT
 ===================================================== */
 
 const client = new Paho.MQTT.Client(
-MQTT_HOST,
-Number(MQTT_PORT),
-CLIENT_ID
+    MQTT_HOST,
+    Number(MQTT_PORT),
+    CLIENT_ID
 );
 
+
 /* =====================================================
-QUANDO CONECTAR
+QUANDO A CONEXÃO FOR PERDIDA
 ===================================================== */
 
 client.onConnectionLost = function (responseObject) {
 
-```
-statusElemento.textContent =
-    "🔴 MQTT: Desconectado";
+    statusElemento.textContent =
+        "🔴 MQTT: Desconectado";
 
-statusElemento.classList.remove("conectado");
-statusElemento.classList.add("desconectado");
+    statusElemento.classList.remove("conectado");
+    statusElemento.classList.add("desconectado");
 
-console.log("Conexão perdida.");
-```
+    console.log("Conexão MQTT perdida.");
 
 };
 
+
 /* =====================================================
-RECEBER MENSAGENS
+RECEBER MENSAGENS MQTT
 ===================================================== */
 
 client.onMessageArrived = function (message) {
 
-```
-console.log(
-    "Mensagem recebida:",
-    message.destinationName,
-    message.payloadString
-);
+    console.log(
+        "Mensagem recebida:",
+        message.destinationName,
+        message.payloadString
+    );
+
+    const valor = Number(message.payloadString);
 
 
-const valor = Number(message.payloadString);
+    /* ================= TEMPERATURA ================= */
 
+    if (
+        message.destinationName ===
+        TOPICO_TEMPERATURA
+    ) {
 
-/* TEMPERATURA */
+        temperaturaElemento.textContent =
+            valor.toFixed(1) + " °C";
 
-if (
-    message.destinationName ===
-    TOPICO_TEMPERATURA
-) {
+        if (valor > 28) {
 
-    temperaturaElemento.textContent =
-        valor.toFixed(1) + " °C";
+            alertaTemperatura.textContent =
+                "⚠️ ALERTA: Temperatura alta";
 
-    if (valor > 28) {
+        } else {
 
-        alertaTemperatura.textContent =
-            "⚠️ ALERTA: Temperatura alta";
+            alertaTemperatura.textContent =
+                "✅ Temperatura normal";
 
-    } else {
-
-        alertaTemperatura.textContent =
-            "✅ Temperatura normal";
-
-    }
-
-}
-
-
-/* UMIDADE */
-
-if (
-    message.destinationName ===
-    TOPICO_UMIDADE
-) {
-
-    umidadeElemento.textContent =
-        valor.toFixed(0) + " %";
-
-    if (valor > 56) {
-
-        alertaUmidade.textContent =
-            "⚠️ ALERTA: Umidade alta";
-
-    } else {
-
-        alertaUmidade.textContent =
-            "✅ Umidade normal";
+        }
 
     }
 
-}
 
+    /* ================= UMIDADE ================= */
 
-/* QUALIDADE DO AR */
+    if (
+        message.destinationName ===
+        TOPICO_UMIDADE
+    ) {
 
-if (
-    message.destinationName ===
-    TOPICO_AR
-) {
+        umidadeElemento.textContent =
+            valor.toFixed(0) + " %";
 
-    qualidadeArElemento.textContent =
-        valor.toFixed(0);
+        if (valor > 56) {
 
-    if (valor > 400) {
+            alertaUmidade.textContent =
+                "⚠️ ALERTA: Umidade alta";
 
-        alertaAr.textContent =
-            "⚠️ ALERTA: Qualidade do ar";
+        } else {
 
-    } else {
+            alertaUmidade.textContent =
+                "✅ Umidade normal";
 
-        alertaAr.textContent =
-            "✅ Qualidade do ar normal";
+        }
 
     }
 
-}
-```
+
+    /* ================= QUALIDADE DO AR ================= */
+
+    if (
+        message.destinationName ===
+        TOPICO_AR
+    ) {
+
+        qualidadeArElemento.textContent =
+            valor.toFixed(0);
+
+        if (valor > 400) {
+
+            alertaAr.textContent =
+                "⚠️ ALERTA: Qualidade do ar";
+
+        } else {
+
+            alertaAr.textContent =
+                "✅ Qualidade do ar normal";
+
+        }
+
+    }
 
 };
+
 
 /* =====================================================
 CONECTAR AO MOSQUITTO
@@ -232,80 +221,82 @@ CONECTAR AO MOSQUITTO
 
 function conectarMQTT() {
 
-```
-statusElemento.textContent =
-    "🟡 MQTT: Conectando...";
+    statusElemento.textContent =
+        "🟡 MQTT: Conectando...";
 
 
-client.connect({
+    client.connect({
 
-    useSSL: false,
+        useSSL: false,
 
-    timeout: 5,
+        timeout: 5,
 
-    onSuccess: function () {
+        onSuccess: function () {
 
-        console.log("MQTT conectado!");
+            console.log("MQTT conectado!");
 
-        statusElemento.textContent =
-            "🟢 MQTT: Conectado";
+            statusElemento.textContent =
+                "🟢 MQTT: Conectado";
 
-        statusElemento.classList.remove(
-            "desconectado"
-        );
+            statusElemento.classList.remove(
+                "desconectado"
+            );
 
-        statusElemento.classList.add(
-            "conectado"
-        );
+            statusElemento.classList.add(
+                "conectado"
+            );
 
 
-        /* ASSINAR OS TÓPICOS */
+            /* ================================
+               ASSINAR OS TÓPICOS
+            ================================= */
 
-        client.subscribe(
-            TOPICO_TEMPERATURA
-        );
+            client.subscribe(
+                TOPICO_TEMPERATURA
+            );
 
-        client.subscribe(
-            TOPICO_UMIDADE
-        );
+            client.subscribe(
+                TOPICO_UMIDADE
+            );
 
-        client.subscribe(
-            TOPICO_AR
-        );
+            client.subscribe(
+                TOPICO_AR
+            );
 
-        console.log(
-            "Tópicos MQTT assinados."
-        );
+            console.log(
+                "Tópicos MQTT assinados."
+            );
 
-    },
+        },
 
-    onFailure: function (error) {
 
-        console.error(
-            "Erro MQTT:",
-            error
-        );
+        onFailure: function (error) {
 
-        statusElemento.textContent =
-            "🔴 MQTT: Erro na conexão";
+            console.error(
+                "Erro MQTT:",
+                error
+            );
 
-        statusElemento.classList.remove(
-            "conectado"
-        );
+            statusElemento.textContent =
+                "🔴 MQTT: Erro na conexão";
 
-        statusElemento.classList.add(
-            "desconectado"
-        );
+            statusElemento.classList.remove(
+                "conectado"
+            );
 
-    }
+            statusElemento.classList.add(
+                "desconectado"
+            );
 
-});
-```
+        }
+
+    });
 
 }
 
+
 /* =====================================================
-INICIAR
+INICIAR SISTEMA
 ===================================================== */
 
 conectarMQTT();
