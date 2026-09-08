@@ -1,35 +1,4 @@
 /* =====================================================
-NAVEGAÇÃO ENTRE AS PÁGINAS
-===================================================== */
-
-const btnSobre = document.getElementById("btnSobre");
-const btnDashboard = document.getElementById("btnDashboard");
-
-const paginaSobre = document.getElementById("sobre");
-const paginaDashboard = document.getElementById("dashboard");
-
-btnSobre.addEventListener("click", function () {
-
-    paginaSobre.classList.add("ativa");
-    paginaDashboard.classList.remove("ativa");
-
-    btnSobre.classList.add("ativo");
-    btnDashboard.classList.remove("ativo");
-
-});
-
-btnDashboard.addEventListener("click", function () {
-
-    paginaDashboard.classList.add("ativa");
-    paginaSobre.classList.remove("ativa");
-
-    btnDashboard.classList.add("ativo");
-    btnSobre.classList.remove("ativo");
-
-});
-
-
-/* =====================================================
 LOCAL STORAGE
 ===================================================== */
 
@@ -39,65 +8,68 @@ const senhaGrupo = "grupo";
 // Salva a senha no LocalStorage
 localStorage.setItem("senhaGrupo", senhaGrupo);
 
-
 /* =====================================================
 CONFIGURAÇÃO MQTT
 ===================================================== */
 
 // IP do computador onde o Mosquitto está instalado
+// TROQUE PELO IP REAL DO COMPUTADOR
 const MQTT_HOST = "192.168.0.100";
 
 // Porta WebSocket do Mosquitto
 const MQTT_PORT = 9001;
 
-// Client ID aleatório para evitar conflitos
+// Client ID aleatório
 const CLIENT_ID =
-    "Dashboard_" + Math.random().toString(16).substring(2, 10);
-
+"Dashboard_" + Math.random().toString(16).substring(2, 10);
 
 /* =====================================================
 TÓPICOS MQTT
 ===================================================== */
 
 const TOPICO_TEMPERATURA =
-    "aulas/professortupi/temperatura";
+"aulas/professortupi/temperatura";
 
 const TOPICO_UMIDADE =
-    "aulas/professortupi/umidade";
+"aulas/professortupi/umidade";
 
 const TOPICO_AR =
-    "aulas/professortupi/qualidade_ar";
-
+"aulas/professortupi/qualidade_ar";
 
 /* =====================================================
 ELEMENTOS DO HTML
 ===================================================== */
 
 const temperaturaElemento =
-    document.getElementById("temperatura");
+document.getElementById("temperatura");
 
 const umidadeElemento =
-    document.getElementById("umidade");
+document.getElementById("umidade");
 
 const qualidadeArElemento =
-    document.getElementById("qualidadeAr");
+document.getElementById("qualidadeAr");
 
 const alertaTemperatura =
-    document.getElementById("alertaTemperatura");
+document.getElementById("alertaTemperatura");
 
 const alertaUmidade =
-    document.getElementById("alertaUmidade");
+document.getElementById("alertaUmidade");
 
 const alertaAr =
-    document.getElementById("alertaAr");
+document.getElementById("alertaAr");
 
 const statusElemento =
-    document.getElementById("status");
-
+document.getElementById("status");
 
 /* =====================================================
-CRIAÇÃO DO CLIENTE MQTT
+VERIFICAR SE ESTAMOS NO DASHBOARD
 ===================================================== */
+
+if (statusElemento) {
+
+/* =================================================
+CRIAÇÃO DO CLIENTE MQTT
+================================================= */
 
 const client = new Paho.MQTT.Client(
     MQTT_HOST,
@@ -106,26 +78,31 @@ const client = new Paho.MQTT.Client(
 );
 
 
-/* =====================================================
-QUANDO A CONEXÃO FOR PERDIDA
-===================================================== */
+/* =================================================
+CONEXÃO PERDIDA
+================================================= */
 
 client.onConnectionLost = function (responseObject) {
 
     statusElemento.textContent =
         "🔴 MQTT: Desconectado";
 
-    statusElemento.classList.remove("conectado");
-    statusElemento.classList.add("desconectado");
+    statusElemento.classList.remove(
+        "conectado"
+    );
+
+    statusElemento.classList.add(
+        "desconectado"
+    );
 
     console.log("Conexão MQTT perdida.");
 
 };
 
 
-/* =====================================================
-RECEBER MENSAGENS MQTT
-===================================================== */
+/* =================================================
+RECEBER MENSAGENS
+================================================= */
 
 client.onMessageArrived = function (message) {
 
@@ -135,7 +112,9 @@ client.onMessageArrived = function (message) {
         message.payloadString
     );
 
-    const valor = Number(message.payloadString);
+
+    const valor =
+        Number(message.payloadString);
 
 
     /* ================= TEMPERATURA ================= */
@@ -147,6 +126,7 @@ client.onMessageArrived = function (message) {
 
         temperaturaElemento.textContent =
             valor.toFixed(1) + " °C";
+
 
         if (valor > 28) {
 
@@ -173,6 +153,7 @@ client.onMessageArrived = function (message) {
         umidadeElemento.textContent =
             valor.toFixed(0) + " %";
 
+
         if (valor > 56) {
 
             alertaUmidade.textContent =
@@ -198,6 +179,7 @@ client.onMessageArrived = function (message) {
         qualidadeArElemento.textContent =
             valor.toFixed(0);
 
+
         if (valor > 400) {
 
             alertaAr.textContent =
@@ -215,9 +197,9 @@ client.onMessageArrived = function (message) {
 };
 
 
-/* =====================================================
+/* =================================================
 CONECTAR AO MOSQUITTO
-===================================================== */
+================================================= */
 
 function conectarMQTT() {
 
@@ -231,16 +213,20 @@ function conectarMQTT() {
 
         timeout: 5,
 
+
         onSuccess: function () {
 
             console.log("MQTT conectado!");
 
+
             statusElemento.textContent =
                 "🟢 MQTT: Conectado";
+
 
             statusElemento.classList.remove(
                 "desconectado"
             );
+
 
             statusElemento.classList.add(
                 "conectado"
@@ -248,7 +234,7 @@ function conectarMQTT() {
 
 
             /* ================================
-               ASSINAR OS TÓPICOS
+            ASSINAR OS TÓPICOS
             ================================= */
 
             client.subscribe(
@@ -262,6 +248,7 @@ function conectarMQTT() {
             client.subscribe(
                 TOPICO_AR
             );
+
 
             console.log(
                 "Tópicos MQTT assinados."
@@ -277,12 +264,15 @@ function conectarMQTT() {
                 error
             );
 
+
             statusElemento.textContent =
                 "🔴 MQTT: Erro na conexão";
+
 
             statusElemento.classList.remove(
                 "conectado"
             );
+
 
             statusElemento.classList.add(
                 "desconectado"
@@ -295,8 +285,11 @@ function conectarMQTT() {
 }
 
 
-/* =====================================================
-INICIAR SISTEMA
-===================================================== */
+/* =================================================
+INICIAR MQTT
+================================================= */
 
 conectarMQTT();
+
+
+}
