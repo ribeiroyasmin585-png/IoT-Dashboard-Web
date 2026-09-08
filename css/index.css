@@ -92,10 +92,6 @@ PÁGINA
     min-height: 600px;
 }
 
-/* =========================
-HERO
-========================= */
-
 .hero {
     background: linear-gradient(135deg, #ffffff, #f8fafc);
     padding: 42px;
@@ -103,17 +99,6 @@ HERO
     margin-bottom: 30px;
     border: 1px solid #e2e8f0;
     box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
-}
-
-.etiqueta,
-.titulo-menor,
-.titulo-secao > span {
-    display: block;
-    color: #64748b;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
 }
 
 .hero h2 {
@@ -126,6 +111,11 @@ HERO
     line-height: 1.7;
     margin-bottom: 10px;
     color: #64748b;
+}
+
+.hero .botao {
+    display: inline-block;
+    width: fit-content;
 }
 
 /* =========================
@@ -192,14 +182,21 @@ GALERIA
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
+    width: 100%;
 }
 
 .imagens figure {
+    margin: 0;
+    padding: 0;
     background: white;
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid #e2e8f0;
     box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+
+    display: flex;
+    flex-direction: column;
+
     transition: 0.3s;
 }
 
@@ -211,31 +208,43 @@ GALERIA
 .imagens img {
     width: 100%;
     height: 220px;
-    object-fit: cover;
+
+    object-fit: contain;
+    object-position: center;
+
     display: block;
-    transition: 0.4s;
+
+    background: #f8fafc;
+
+    transition: 0.3s;
 }
 
 .imagens figure:hover img {
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
 .imagens figcaption {
-    padding: 17px;
+    min-height: 75px;
+    padding: 15px;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
     gap: 5px;
 }
 
 .imagens figcaption strong {
     color: #334155;
+    font-size: 16px;
 }
 
 .imagens figcaption span {
     color: #94a3b8;
     font-size: 14px;
 }
-
 /* =========================
 INFORMAÇÃO
 ========================= */
