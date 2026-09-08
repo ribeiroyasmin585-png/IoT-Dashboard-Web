@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Dashboard - Estação de Monitoramento IoT</title>
+
+<link rel="stylesheet" href="index.css">
+
+<!-- Biblioteca Paho MQTT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+<header class="cabecalho">
+
+    <div class="titulo">
+        <h1>Estação de Monitoramento IoT</h1>
+        <p>Projeto IoT - SESI SENAI Vinhedo</p>
+    </div>
+
+    <div class="grupo">
+        <strong>Grupo 4</strong>
+        <span>Turma: 3ºB</span>
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="projeto.html">
+        Sobre o Projeto
+    </a>
+
+    <a href="dashb.html" class="ativo">
+        Dashboard Ao Vivo
+    </a>
+
+</nav>
+
+
+<main>
+
+    <section class="pagina">
+
+        <section class="dashboard-header">
+
+            <div>
+                <span class="titulo-menor">MONITORAMENTO</span>
+                <h2>Dashboard Ao Vivo</h2>
+                <p>
+                    Dados recebidos dos sensores em tempo real.
+                </p>
+            </div>
+
+            <div id="status" class="status desconectado">
+                🔴 MQTT: Desconectado
+            </div>
+
+        </section>
+
+
+        <section class="dashboard">
+
+
+            <!-- TEMPERATURA -->
+
+            <article class="sensor-card">
+
+                <div class="sensor-topo">
+                    <div class="icone">🌡️</div>
+                    <span class="sensor-label">DHT11</span>
+                </div>
+
+                <h3>Temperatura</h3>
+
+                <strong id="temperatura">
+                    -- °C
+                </strong>
+
+                <p id="alertaTemperatura" class="alerta">
+                    Aguardando dados...
+                </p>
+
+            </article>
+
+
+            <!-- UMIDADE -->
+
+            <article class="sensor-card">
+
+                <div class="sensor-topo">
+                    <div class="icone">💧</div>
+                    <span class="sensor-label">DHT11</span>
+                </div>
+
+                <h3>Umidade</h3>
+
+                <strong id="umidade">
+                    -- %
+                </strong>
+
+                <p id="alertaUmidade" class="alerta">
+                    Aguardando dados...
+                </p>
+
+            </article>
+
+
+            <!-- QUALIDADE DO AR -->
+
+            <article class="sensor-card">
+
+                <div class="sensor-topo">
+                    <div class="icone">🌫️</div>
+                    <span class="sensor-label">MQ-135</span>
+                </div>
+
+                <h3>Qualidade do Ar</h3>
+
+                <strong id="qualidadeAr">
+                    --
+                </strong>
+
+                <p id="alertaAr" class="alerta">
+                    Aguardando dados...
+                </p>
+
+            </article>
+
+
+        </section>
+
+
+        <section class="informacao">
+
+            <div class="info-icone">
+                📡
+            </div>
+
+            <div>
+
+                <span class="titulo-menor">
+                    CONEXÃO MQTT
+                </span>
+
+                <h2>Monitoramento em tempo real</h2>
+
+                <p>
+                    Os valores apresentados nesta tela são recebidos
+                    através do protocolo MQTT utilizando WebSockets.
+                    O dashboard atualiza automaticamente os cartões
+                    sempre que uma nova mensagem é recebida.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="arquitetura-mini">
+
+            <div class="etapa">
+                <span>01</span>
+                <strong>ESP32</strong>
+                <small>Coleta</small>
+            </div>
+
+            <div class="seta">→</div>
+
+            <div class="etapa">
+                <span>02</span>
+                <strong>Wi-Fi</strong>
+                <small>Transmissão</small>
+            </div>
+
+            <div class="seta">→</div>
+
+            <div class="etapa">
+                <span>03</span>
+                <strong>MQTT</strong>
+                <small>Broker</small>
+            </div>
+
+            <div class="seta">→</div>
+
+            <div class="etapa">
+                <span>04</span>
+                <strong>Dashboard</strong>
+                <small>Visualização</small>
+            </div>
+
+        </section>
+
+
+        <div class="banner-dashboard">
+            Projeto IOT SESI SENAI Vinhedo Grupo 4
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Integrantes:
+        Marina Queiroz • Nicole Zanin • Paloma Esteves •
+        Raphaela Alegretti • Yasmin Ribeiro
+    </p>
+
+</footer>
+
+
+<!-- JavaScript -->
+<script src="index.js"></script>
+
+
+</body>
+
+</html>
