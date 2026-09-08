@@ -4,7 +4,15 @@ LOCAL STORAGE
 
 const senhaGrupo = "grupo";
 
-localStorage.setItem("senhaGrupo", senhaGrupo);
+const grupo = [
+    "Marina",
+    "Paloma",
+    "Nicole",
+    "Raphaela",
+    "Yasmin"
+];
+
+localStorage.setItem("grupo", JSON.stringify(grupo));
 
 
 /* =========================
