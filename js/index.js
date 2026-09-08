@@ -11,7 +11,7 @@ localStorage.setItem("senhaGrupo", senhaGrupo);
 CONFIGURAÇÃO MQTT
 ========================= */
 
-const MQTT_HOST = "192.168.0.100";
+const MQTT_HOST = "10.136.42.63";
 const MQTT_PORT = 9001;
 
 const CLIENT_ID =
@@ -22,14 +22,15 @@ const CLIENT_ID =
 TÓPICOS MQTT
 ========================= */
 
+
 const TOPICO_TEMPERATURA =
-    "aulas/professortupi/temperatura";
+    "aulas/grupo4Yasmin/temperatura";
 
 const TOPICO_UMIDADE =
-    "aulas/professortupi/umidade";
+    "aulas/grupo4Yasmin/umidade";
 
 const TOPICO_AR =
-    "aulas/professortupi/qualidade_ar";
+    "aulas/grupo4Yasmin/qualidade_ar";
 
 
 /* =========================
