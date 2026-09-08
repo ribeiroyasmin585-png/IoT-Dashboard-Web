@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Sobre o Projeto - IoT</title>
 
-<title>Sobre o Projeto - Estação de Monitoramento IoT</title>
-
-<link rel="stylesheet" href="index.css">
-
-
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body>
@@ -30,19 +26,10 @@
 
 </header>
 
-
 <nav class="menu">
-
-    <a href="projeto.html" class="ativo">
-        Sobre o Projeto
-    </a>
-
-    <a href="dashb.html">
-        Dashboard Ao Vivo
-    </a>
-
+    <a href="projeto.html" class="ativo">Sobre o Projeto</a>
+    <a href="dashb.html">Dashboard Ao Vivo</a>
 </nav>
-
 
 <main>
 
@@ -50,24 +37,23 @@
 
         <article class="hero">
 
-            <span class="etiqueta">PROJETO IoT</span>
+            <span class="etiqueta">SOBRE O PROJETO</span>
 
-            <h2>Sobre o Projeto</h2>
+            <h2>Estação de Monitoramento IoT</h2>
 
             <p>
                 Este projeto consiste em uma estação de monitoramento IoT
-                capaz de coletar informações ambientais utilizando um ESP32,
-                sensores e comunicação MQTT.
+                capaz de coletar informações ambientais utilizando um
+                ESP32, sensores e comunicação MQTT.
             </p>
 
             <p>
-                Os dados coletados pelos sensores são enviados através da
-                rede Wi-Fi para um servidor Mosquitto e posteriormente
-                apresentados em um dashboard web em tempo real.
+                Os dados coletados são enviados para um servidor Mosquitto
+                e posteriormente apresentados em um dashboard web em
+                tempo real.
             </p>
 
         </article>
-
 
         <section class="conteudo">
 
@@ -80,11 +66,10 @@
                 <p>
                     Monitorar temperatura, umidade e qualidade do ar,
                     apresentando os dados em uma interface web de forma
-                    simples, organizada e atualizada em tempo real.
+                    simples e atualizada em tempo real.
                 </p>
 
             </article>
-
 
             <article class="card-info">
 
@@ -101,7 +86,6 @@
 
             </article>
 
-
             <article class="card-info">
 
                 <div class="card-icone">🌐</div>
@@ -117,84 +101,56 @@
 
         </section>
 
-
         <section class="galeria">
 
             <div class="titulo-secao">
-                <span>REGISTROS</span>
+                <span>COMPONENTES</span>
                 <h2>Imagens do Projeto</h2>
             </div>
-
 
             <div class="imagens">
 
                 <figure>
-
-                    <img
-                        src="imagens/esp32.jpg"
-                        alt="ESP32 utilizado no projeto"
-                    >
-
+                    <img src="../assets/esp32.jpeg" alt="ESP32 do projeto">
                     <figcaption>
                         <strong>ESP32</strong>
-                        <span>Microcontrolador da estação</span>
+                        <span>Microcontrolador utilizado no projeto</span>
                     </figcaption>
-
                 </figure>
 
-
                 <figure>
-
-                    <img
-                        src="imagens/sensores.jpg"
-                        alt="Sensores utilizados no projeto"
-                    >
-
-                    <figcaption>
+                   <img src="../assets/mqsensor.jpeg" alt="Sensor MQ-135">
+ <figcaption>
                         <strong>Sensores</strong>
                         <span>DHT11 e MQ-135</span>
                     </figcaption>
-
                 </figure>
 
-
                 <figure>
-
-                    <img
-                        src="imagens/arquitetura.jpg"
-                        alt="Arquitetura do sistema IoT"
-                    >
-
+                    <img src="../assets/led.jpeg" alt="LED de alerta">
                     <figcaption>
-                        <strong>Arquitetura</strong>
-                        <span>Comunicação do sistema</span>
+                        <strong>LED de alerta</strong>
+                        <span>Indicação de valores acima do limite</span>
                     </figcaption>
-
                 </figure>
 
             </div>
 
         </section>
 
-
         <section class="informacao">
 
             <div>
-                <span class="titulo-menor">COMUNICAÇÃO</span>
-
-                <h2>Monitoramento em tempo real</h2>
+                <h2>Dashboard em tempo real</h2>
 
                 <p>
-                    A comunicação entre o ESP32 e o dashboard utiliza o
-                    protocolo MQTT. O broker Mosquitto recebe as mensagens
-                    enviadas pelo dispositivo e disponibiliza os dados
-                    através de WebSockets para a aplicação web.
+                    Acesse o dashboard para acompanhar os dados
+                    recebidos dos sensores através do MQTT.
                 </p>
-
             </div>
 
             <a href="dashb.html" class="botao">
-                Acessar Dashboard →
+                Abrir Dashboard
             </a>
 
         </section>
@@ -203,12 +159,10 @@
 
 </main>
 
-
 <footer>
 
     <p>
-        Integrantes:
-        Marina Queiroz • Nicole Zanin • Paloma Esteves •
+        Integrantes: Marina Queiroz • Nicole Zanin • Paloma Esteves •
         Raphaela Alegretti • Yasmin Ribeiro
     </p>
 
@@ -218,7 +172,5 @@
 
 </footer>
 
-
 </body>
-
 </html>

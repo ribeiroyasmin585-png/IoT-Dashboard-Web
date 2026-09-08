@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-
-
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Estação de Monitoramento IoT</title>
+    <title>Estação de Monitoramento IoT</title>
 
-<link rel="stylesheet" href="index.css">
-
-<!-- Biblioteca Paho MQTT -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
-
-
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body>
 
 <header class="cabecalho">
+
     <div class="titulo">
         <h1>Estação de Monitoramento IoT</h1>
         <p>Projeto IoT - SESI SENAI Vinhedo</p>
@@ -28,154 +23,80 @@
         <strong>Grupo 4</strong>
         <span>Turma: 3ºB</span>
     </div>
+
 </header>
 
 <nav class="menu">
-    <button id="btnSobre" class="ativo">Sobre o Projeto</button>
-    <button id="btnDashboard">Dashboard Ao Vivo</button>
+    <a href="projeto.html">Sobre o Projeto</a>
+    <a href="dashb.html">Dashboard Ao Vivo</a>
 </nav>
 
 <main>
 
-    <!-- ================= SOBRE O PROJETO ================= -->
-
-    <section id="sobre" class="pagina ativa">
+    <section class="pagina">
 
         <article class="hero">
-            <h2>Sobre o Projeto</h2>
+
+            <span class="etiqueta">PROJETO DE INTERNET DAS COISAS</span>
+
+            <h2>Estação de Monitoramento IoT</h2>
 
             <p>
-                Este projeto consiste em uma estação de monitoramento IoT
-                capaz de coletar informações ambientais utilizando um ESP32,
-                sensores e comunicação MQTT.
+                Bem-vindo ao projeto de monitoramento ambiental desenvolvido
+                pelo Grupo 4 do SESI SENAI Vinhedo.
             </p>
 
             <p>
-                Os dados coletados são enviados para um servidor Mosquitto
-                e posteriormente apresentados em um dashboard web em tempo real.
+                O sistema utiliza sensores conectados a um ESP32 para
+                coletar dados de temperatura, umidade e qualidade do ar.
             </p>
+
+            <a href="projeto.html" class="botao">
+                Conhecer o projeto
+            </a>
+
         </article>
 
         <section class="conteudo">
 
             <article class="card-info">
-                <h2>🎯 Objetivo</h2>
+
+                <div class="card-icone">🌡️</div>
+
+                <h2>Temperatura</h2>
 
                 <p>
-                    Monitorar temperatura, umidade e qualidade do ar,
-                    apresentando os dados em uma interface web de forma
-                    simples e atualizada em tempo real.
+                    Monitoramento da temperatura do ambiente
+                    através do sensor DHT11.
                 </p>
+
             </article>
 
             <article class="card-info">
-                <h2>🔧 Hardware</h2>
 
-                <ul>
-                    <li>ESP32 Dev Module</li>
-                    <li>Sensor DHT11</li>
-                    <li>Sensor MQ-135</li>
-                    <li>LEDs de alerta</li>
-                </ul>
+                <div class="card-icone">💧</div>
+
+                <h2>Umidade</h2>
+
+                <p>
+                    Medição da umidade do ambiente em tempo real
+                    utilizando o sensor DHT11.
+                </p>
+
             </article>
 
             <article class="card-info">
-                <h2>🌐 Arquitetura</h2>
+
+                <div class="card-icone">🌫️</div>
+
+                <h2>Qualidade do Ar</h2>
 
                 <p>
-                    ESP32 → Wi-Fi → MQTT → Mosquitto →
-                    WebSocket → Dashboard Web
+                    Monitoramento da qualidade do ar através
+                    do sensor MQ-135.
                 </p>
+
             </article>
-
-        </section>
-
-        <section class="galeria">
-
-            <h2>Imagens do Projeto</h2>
-
-            <div class="imagens">
-
-                <figure>
-                    <img src="imagens/esp32.jpeg" alt="ESP32 do projeto">
-                    <figcaption>ESP32</figcaption>
-                </figure>
-
-                <figure>
-                    <img src="imagens/mqsensor.jpg" alt="Sensores do projeto">
-                    <figcaption>Sensores</figcaption>
-                </figure>
-
-                <figure>
-                    <img src="imagens/led.jpeg" alt="Led ligada">
-                    <figcaption>Led ligada</figcaption>
-                </figure>
-
-            </div>
-
-        </section>
-
-    </section>
-
-
-    <!-- ================= DASHBOARD ================= -->
-
-    <section id="dashboard" class="pagina">
-
-        <section class="dashboard-header">
-            <h2>Dashboard Ao Vivo</h2>
-
-            <div id="status" class="status desconectado">
-                🔴 MQTT: Desconectado
-            </div>
-        </section>
-
-
-        <section class="dashboard">
-
-            <article class="sensor-card temperatura">
-                <div class="icone">🌡️</div>
-
-                <h3>Temperatura</h3>
-
-                <strong id="temperatura">-- °C</strong>
-
-                <p id="alertaTemperatura">Normal</p>
-            </article>
-
-
-            <article class="sensor-card umidade">
-                <div class="icone">💧</div>
-
-                <h3>Umidade</h3>
-
-                <strong id="umidade">-- %</strong>
-
-                <p id="alertaUmidade">Normal</p>
-            </article>
-
-
-            <article class="sensor-card ar">
-                <div class="icone">🌫️</div>
-
-                <h3>Qualidade do Ar</h3>
-
-                <strong id="qualidadeAr">--</strong>
-
-                <p id="alertaAr">Normal</p>
-            </article>
-
-        </section>
-
-
-        <section class="informacao">
-
-            <h2>Monitoramento em tempo real</h2>
-
-            <p>
-                Os valores apresentados são recebidos através do protocolo
-                MQTT utilizando WebSockets.
-            </p>
 
         </section>
 
@@ -183,14 +104,11 @@
 
 </main>
 
-
-<!-- ================= RODAPÉ ================= -->
-
 <footer>
 
     <p>
-        Integrantes:
-        Marina Queiroz • Nicole Zanin • Paloma Esteves • Raphaela Alegretti • Yasmin Ribeiro
+        Integrantes: Marina Queiroz • Nicole Zanin • Paloma Esteves •
+        Raphaela Alegretti • Yasmin Ribeiro
     </p>
 
     <div class="banner">
@@ -198,10 +116,6 @@
     </div>
 
 </footer>
-
-
-<!-- JavaScript -->
-<script src="index.js"></script>
 
 </body>
 </html>
