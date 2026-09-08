@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Sobre o Projeto - Estação de Monitoramento IoT</title>
+
+<link rel="stylesheet" href="index.css">
+```
+
+</head>
+
+<body>
+
+```
+<header class="cabecalho">
+
+    <div class="titulo">
+        <h1>Estação de Monitoramento IoT</h1>
+        <p>Projeto IoT - SESI SENAI Vinhedo</p>
+    </div>
+
+    <div class="grupo">
+        <strong>Grupo 4</strong>
+        <span>Turma: 3ºB</span>
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="projeto.html" class="ativo">
+        Sobre o Projeto
+    </a>
+
+    <a href="dashb.html">
+        Dashboard Ao Vivo
+    </a>
+
+</nav>
+
+
+<main>
+
+    <section class="pagina">
+
+        <article class="hero">
+
+            <span class="etiqueta">PROJETO IoT</span>
+
+            <h2>Sobre o Projeto</h2>
+
+            <p>
+                Este projeto consiste em uma estação de monitoramento IoT
+                capaz de coletar informações ambientais utilizando um ESP32,
+                sensores e comunicação MQTT.
+            </p>
+
+            <p>
+                Os dados coletados pelos sensores são enviados através da
+                rede Wi-Fi para um servidor Mosquitto e posteriormente
+                apresentados em um dashboard web em tempo real.
+            </p>
+
+        </article>
+
+
+        <section class="conteudo">
+
+            <article class="card-info">
+
+                <div class="card-icone">🎯</div>
+
+                <h2>Objetivo</h2>
+
+                <p>
+                    Monitorar temperatura, umidade e qualidade do ar,
+                    apresentando os dados em uma interface web de forma
+                    simples, organizada e atualizada em tempo real.
+                </p>
+
+            </article>
+
+
+            <article class="card-info">
+
+                <div class="card-icone">🔧</div>
+
+                <h2>Hardware</h2>
+
+                <ul>
+                    <li>ESP32 Dev Module</li>
+                    <li>Sensor DHT11</li>
+                    <li>Sensor MQ-135</li>
+                    <li>LEDs de alerta</li>
+                </ul>
+
+            </article>
+
+
+            <article class="card-info">
+
+                <div class="card-icone">🌐</div>
+
+                <h2>Arquitetura</h2>
+
+                <p>
+                    ESP32 → Wi-Fi → MQTT → Mosquitto →
+                    WebSocket → Dashboard Web
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <section class="galeria">
+
+            <div class="titulo-secao">
+                <span>REGISTROS</span>
+                <h2>Imagens do Projeto</h2>
+            </div>
+
+
+            <div class="imagens">
+
+                <figure>
+
+                    <img
+                        src="imagens/esp32.jpg"
+                        alt="ESP32 utilizado no projeto"
+                    >
+
+                    <figcaption>
+                        <strong>ESP32</strong>
+                        <span>Microcontrolador da estação</span>
+                    </figcaption>
+
+                </figure>
+
+
+                <figure>
+
+                    <img
+                        src="imagens/sensores.jpg"
+                        alt="Sensores utilizados no projeto"
+                    >
+
+                    <figcaption>
+                        <strong>Sensores</strong>
+                        <span>DHT11 e MQ-135</span>
+                    </figcaption>
+
+                </figure>
+
+
+                <figure>
+
+                    <img
+                        src="imagens/arquitetura.jpg"
+                        alt="Arquitetura do sistema IoT"
+                    >
+
+                    <figcaption>
+                        <strong>Arquitetura</strong>
+                        <span>Comunicação do sistema</span>
+                    </figcaption>
+
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <section class="informacao">
+
+            <div>
+                <span class="titulo-menor">COMUNICAÇÃO</span>
+
+                <h2>Monitoramento em tempo real</h2>
+
+                <p>
+                    A comunicação entre o ESP32 e o dashboard utiliza o
+                    protocolo MQTT. O broker Mosquitto recebe as mensagens
+                    enviadas pelo dispositivo e disponibiliza os dados
+                    através de WebSockets para a aplicação web.
+                </p>
+
+            </div>
+
+            <a href="dashb.html" class="botao">
+                Acessar Dashboard →
+            </a>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Integrantes:
+        Marina Queiroz • Nicole Zanin • Paloma Esteves •
+        Raphaela Alegretti • Yasmin Ribeiro
+    </p>
+
+    <div class="banner">
+        Projeto IOT SESI SENAI Vinhedo Grupo 4
+    </div>
+
+</footer>
+```
+
+</body>
+
+</html>
